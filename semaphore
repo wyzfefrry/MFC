@@ -1,0 +1,40 @@
+HANDLE hSemaphore;
+UINT ThreadProc15(LPVOID pParam)
+{
+WaitForSingleObject(hSemaphore, INFINITE);
+// 线程任务处理
+AfxMessageBox(_T("线程一正在执行!"));
+// 释放信号量计数
+ReleaseSemaphore(hSemaphore, 1, NULL);
+return 0;
+}
+UINT ThreadProc16(LPVOID pParam)
+{
+
+WaitForSingleObject(hSemaphore, INFINITE);
+// 线程任务处理
+AfxMessageBox(L"线程二正在执行!");
+// 释放信号量计数
+ReleaseSemaphore(hSemaphore, 1, NULL);
+return 0;
+}
+UINT ThreadProc17(LPVOID pParam)
+{
+// 试图进入信号量关口
+WaitForSingleObject(hSemaphore, INFINITE);
+// 线程任务处理
+AfxMessageBox(_T("线程三正在执行!"));
+// 释放信号量计数
+ReleaseSemaphore(hSemaphore, 1, NULL);
+return 0;
+}
+
+void CSemaphoreDlg::testSemaphore()
+{
+// TODO: 　// 创建信号量对象
+hSemaphore = CreateSemaphore(NULL, 2, 2, NULL);
+// 开启线程
+AfxBeginThread(ThreadProc15, NULL);
+AfxBeginThread(ThreadProc16, NULL);
+AfxBeginThread(ThreadProc17, NULL);
+}
