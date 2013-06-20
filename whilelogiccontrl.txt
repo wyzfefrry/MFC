@@ -1,0 +1,28 @@
+UINT CmultiDialogDlg::ThreadFunc(LPVOID pParam) {
+	CmultiDialogDlg* pDlg = (CmultiDialogDlg*)pParam;
+	CTime time;
+	CString strTime;
+	m_bRun=TRUE;
+	while(m_bRun) {
+		time = CTime::GetCurrentTime();
+		strTime=time.Format("%H:%M:%S");
+		::MessageBox(pDlg->GetSafeHwnd(),strTime,_T("test"),MB_OK);
+		Sleep(2000);
+	}
+	return 0;
+}
+void CmultiDialogDlg::OnBnClickedStart()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	AfxBeginThread(ThreadFunc,this);
+	GetDlgItem(IDC_START)->EnableWindow(FALSE); 
+	GetDlgItem(IDC_STOP)->EnableWindow(TRUE);
+}
+
+void CmultiDialogDlg::OnBnClickedStop()
+	{
+// TODO: 在此添加控件通知处理程序代码
+m_bRun=FALSE; 
+GetDlgItem(IDC_START)->EnableWindow(TRUE); 
+GetDlgItem(IDC_STOP)->EnableWindow(FALSE);
+}

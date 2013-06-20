@@ -1,0 +1,26 @@
+#include "stdafx.h"
+#include "iostream"
+#include "set"
+#include "ctime"
+using namespace std;
+
+template<typename T>
+void print(T a, T b){
+	while(a != b) {
+		cout<<*a<<",";
+		a++;
+	}
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	set<int> si;
+	srand(time(0));
+	for(int i = 0;i < 10; i++) {
+		si.insert(rand()%20);
+	}
+	print(si.begin(), si.end());
+	getchar();
+	return 0;
+}
+
