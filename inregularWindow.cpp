@@ -1,5 +1,6 @@
 // 不规则窗口Dlg.cpp : implementation file
-//
+//test tracking 02
+test git diff
 
 #include "stdafx.h"
 #include "不规则窗口.h"

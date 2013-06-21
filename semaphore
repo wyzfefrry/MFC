@@ -1,3 +1,4 @@
+//test git
 HANDLE hSemaphore;
 UINT ThreadProc15(LPVOID pParam)
 {
